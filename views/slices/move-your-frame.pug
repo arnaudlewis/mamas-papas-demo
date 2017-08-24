@@ -1,0 +1,7 @@
+.move-your-frame.grid-container
+  img(src=slice.primary.portrait.url)
+  != RichText.asHtml(slice.primary.title, ctx.linkResolver)
+  a(href=Link.url(slice.primary.link))
+    != RichText.asHtml(slice.primary.link_label, ctx.linkResolver)
+  .desc
+    != RichText.asHtml(slice.primary.description, ctx.linkResolver)

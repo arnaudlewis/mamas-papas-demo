@@ -1,0 +1,46 @@
+extends ./layout.pug
+
+block variables
+  - var nav_class = 'dark'
+  - var activeDoc = home
+
+block body
+  
+  .homepage
+    
+    -// Homepage Banner Section
+    section.homepage-banner(style='background-image: url(' + home.data.backgroundImage.url + ')')
+      .banner-content.grid-container
+        .wrapper
+          h2.banner-title
+            != RichText.asText(home.data.title)
+          != RichText.asHtml(home.data.tag_line, ctx.linkResolver)
+          img(src=home.data.logo.url)
+
+    -// Content Section
+    div
+
+      -// Display the slices
+      for slice in home.data.body
+        case slice.slice_type
+          when 'highlight_section'
+            include ./slices/highlight-section.pug
+          when 'banner'
+            include ./slices/banner.pug
+          when 'banner_look'
+            include ./slices/quote-banner.pug
+          when 'editorial_look'
+            include ./slices/featured-sections.pug
+          when 'text_section'
+            include ./slices/text-section.pug
+          when 'image_slider'
+            include ./slices/image-slider.pug 
+          when 'gallery'
+            include ./slices/gallery.pug
+          when 'video'
+            include ./slices/video.pug
+          when 'full_width_image'
+            include ./slices/full-width-image.pug
+          when 'move_your_frame'
+            include ./slices/move-your-frame.pug
+

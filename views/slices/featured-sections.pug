@@ -1,0 +1,11 @@
+
+.featured-sections
+  for section in slice.items
+    .featured-section.grid-container(class=section.text_position)
+      .content
+        .title
+          != RichText.asHtml(section.title, ctx.linkResolver)
+        .text
+          != RichText.asHtml(section.text, ctx.linkResolver)
+      .illustration
+        img(src=section.image.url alt=section.image.alt)

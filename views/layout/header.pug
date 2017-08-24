@@ -1,0 +1,27 @@
+header(class=[nav_class || '', "site-header"].join(' '))
+
+  .header-container
+    
+    if menu
+      nav
+        ul
+          each linkItem in menu.data.mainlinks
+            li
+              a(href=Link.url(linkItem.link, ctx.linkResolver))
+                != linkItem.label
+    
+    - var homeUrl = `/${I18N.current}`;
+    a(href=homeUrl)
+      .logo
+        img(src=menu.data.logo.url)
+
+    if menu
+      nav
+        ul
+          each linkItem in menu.data.secondarylinks
+            li
+              a(href=Link.url(linkItem.link, ctx.linkResolver))
+                != linkItem.label
+          
+          li.lang
+            include ./language-selector
